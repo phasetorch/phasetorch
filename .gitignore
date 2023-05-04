@@ -1,0 +1,15 @@
+__pycache__
+*.egg-info
+build
+test_temp
+.ipynb_checkpoints
+*.swp
+*.swo
+*.log
+
+# Ignore image files
+*.png
+
+# Polychromatic tests
+tests/test_poly/forw_fit/data
+tests/test_poly/forw_fit/results
