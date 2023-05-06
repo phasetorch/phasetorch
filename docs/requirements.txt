@@ -6,4 +6,5 @@ pillow==9.3
 sphinx==4.5
 nbsphinx==0.9
 ipython==8.11
+matplotlib==3.6
 sphinx-rtd-theme
