@@ -39,7 +39,8 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
-    'nbsphinx'
+    'nbsphinx',
+    'sphinx_rtd_theme',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -57,9 +58,10 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 # https://alabaster.readthedocs.io/en/latest/customization.html#theme-options
-html_theme = 'alabaster'
-html_theme_options = {'body_max_width': '90%',
-                      'page_width': '90%'}
+# html_theme = 'alabaster'
+html_theme = "sphinx_rtd_theme"
+#html_theme_options = {'body_max_width': '90%',
+#                      'page_width': '90%'}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

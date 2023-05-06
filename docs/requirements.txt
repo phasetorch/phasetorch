@@ -1,7 +1,8 @@
-numpy==1.*
+numpy==1.23
 torch>=1.*
 scikit-image==0.19
 chemparse==0.1
 pillow==9.3
 sphinx==4.5
 nbsphinx==0.9
+sphinx-rtd-theme
