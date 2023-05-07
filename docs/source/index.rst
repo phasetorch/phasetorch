@@ -11,12 +11,12 @@ PhaseTorch
    :caption: Contents:
 
 * :ref:`genindex`
-* :ref:`search`
 
 Contents
 --------
 .. toctree::
 
    setup
+   paper
    tutorial
    usage

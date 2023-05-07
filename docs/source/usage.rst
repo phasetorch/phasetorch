@@ -1,5 +1,5 @@
-Usage
-=====
+Function Definitions
+====================
 
 Monochromatic
 -------------
