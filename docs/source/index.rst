@@ -17,6 +17,6 @@ Contents
 .. toctree::
 
    setup
-   paper
+   papers
    tutorial
    usage
