@@ -14,5 +14,5 @@ Monochromatic
 
   .. code-block:: console
 
-     pip install .
+     pip install phasetorch
 
