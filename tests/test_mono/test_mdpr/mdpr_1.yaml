@@ -1,0 +1,15 @@
+save_dir: ./results/mdpr_1
+num_z: 128
+num_x: 128
+pix_width: 0.00065
+energy: 20
+prop_dists: [10, 100, 200]
+sim_upsmpl: 2
+processes: 4
+device: cuda
+radii: [0.014, 0.0208, 0.014, 0.0208]
+center_y: [0.0312, 0.0416, 0.052, 0.0416]
+center_x: [0.0312, 0.0416, 0.052, 0.0416]
+delta_gt: [1.67e-6, 1.1e-6, 2.03e-6, 7.61e-7]
+beta_gt: [4.77e-9, 9.09e-10, 3.97e-9, 3.21e-10]
+

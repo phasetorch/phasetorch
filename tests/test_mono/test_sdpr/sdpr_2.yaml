@@ -1,0 +1,15 @@
+save_dir: ./results/sdpr_2
+num_z: 128
+num_x: 128
+pix_width: 0.00065
+energy: 20
+prop_dists: 100
+sim_upsmpl: 1
+processes: 1
+device: cuda
+radii: [0.014, 0.014]
+center_y: [0.0312, 0.052]
+center_x: [0.0312, 0.052]
+delta_gt: [1.67e-6, 1.67e-6]
+beta_gt: [4.77e-9, 4.77e-9]
+

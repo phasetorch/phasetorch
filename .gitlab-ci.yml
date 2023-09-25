@@ -1,0 +1,68 @@
+# To contribute improvements to CI/CD templates, please follow the Development guide at:
+# https://docs.gitlab.com/ee/development/cicd/templates.html
+# This specific template is located at:
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Python.gitlab-ci.yml
+# LC Gitlab CI docs:
+# https://lc.llnl.gov/confluence/display/GITLAB/First+pipeline+with+LC+Gitlab+CI
+
+# Official language image. Look for the different tagged releases at:
+# https://hub.docker.com/r/library/python/tags/
+image: python:3.9.16-alpine3.18
+
+# Change pip's cache directory to be inside the project directory since we can
+# only cache local items.
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  CI_DEBUG_TRACE: "true" # Consider removing due to security issues.
+  # See https://gitlab.com/gitlab-org/gitlab/-/issues/21833
+  GIT_SUBMODULE_STRATEGY: recursive
+
+# Pip's cache doesn't store the python packages
+# https://pip.pypa.io/en/stable/reference/pip_install/#caching
+# https://docs.gitlab.com/ee/ci/caching/#caching-python-dependencies
+# https://stackoverflow.com/questions/33526236/how-to-avoid-reinstalling-dependencies-for-each-job-in-gitlab-ci
+cache:
+  paths:
+    - .cache/pip
+    - venv/
+
+stages:
+  - deploy
+  - test
+
+test:
+  variables:
+    LLNL_LSF_SCHEDULER_PARAMETERS: "-nnodes 1 -G depcct -W 120"
+    CUSTOM_CI_BUILDS_DIR: "/usr/workspace/$$USER/gitlab-runner-builds-dir"
+  tags:
+    - batch
+    - lassen
+  stage: test
+  script:
+      # https://conda.github.io/conda-pack/
+      - mkdir -p opence-1.8.0
+      - tar -xzf /p/vast1/pci/Softwares/Conda/opence-1.8.0.tar.gz -C opence-1.8.0
+      - source opence-1.8.0/bin/activate
+      - conda-unpack
+      - pip install .
+      - cd tests
+      - pytest -v --arch ibm # --cov # To enable coverage in the future.
+      - cd ..
+      - source opence-1.8.0/bin/deactivate
+      - rm -rf opence-1.8.0
+
+.tags:
+ tags:
+   - lassen  
+   - shell
+ 
+pages:
+  extends: .tags
+  stage: deploy
+  script:
+    - echo "The site will be deployed to $CI_PAGES_URL"
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH 
